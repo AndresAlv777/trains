@@ -20,6 +20,21 @@ const trainController = container.resolve<ITrainController>(TOKENS.ITrainControl
  *     description: Permite registrar trenes
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *        application/json:    # Media type
+ *          schema:            # Request body contents
+ *            $ref: '#/components/schemas/Train'   # Reference to an object
+ *          example:           # Child of media type because we use $ref above
+ *            # Properties of a referenced object
+ *            color: "Verde"
+ *            doorNumber: 20
+ *            type: "Linea 1"
+ *            trainCars: 10
+ *            trainChairs: 250
+ *            trainCapacity: 1500
+ *            code: "4978200"
+ *            chairsNumber: 250
  *     responses:
  *       200:
  *         description: OK
@@ -53,13 +68,28 @@ trainRouter.post("/create", [
 /**
  * @openapi
  * /api/v1/train/update:
- *   post:
+ *   put:
  *     tags:
  *       - Train
  *     summary: Permite actualizar trenes
  *     description: Permite actualizar trenes
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *        application/json:    # Media type
+ *          schema:            # Request body contents
+ *            $ref: '#/components/schemas/Train'   # Reference to an object
+ *          example:           # Child of media type because we use $ref above
+ *            # Properties of a referenced object
+ *            color: "Verde"
+ *            doorNumber: 20
+ *            type: "Linea 1"
+ *            trainCars: 10
+ *            trainChairs: 250
+ *            trainCapacity: 1500
+ *            code: "4978167"
+ *            chairsNumber: 250
  *     responses:
  *       200:
  *         description: OK
@@ -93,13 +123,21 @@ trainRouter.post("/update", [
 /**
  * @openapi
  * /api/v1/train/get:
- *   post:
+ *   get:
  *     tags:
  *       - Train
  *     summary: Permite obtener trenes
  *     description: Permite obtener trenes
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *        application/json:    # Media type
+ *          schema:            # Request body contents
+ *            $ref: '#/components/schemas/Train'   # Reference to an object
+ *          example:           # Child of media type because we use $ref above
+ *            # Properties of a referenced object
+ *            code: "4978165"
  *     responses:
  *       200:
  *         description: OK
@@ -125,14 +163,22 @@ trainRouter.get("", [
 ]);
 /**
  * @openapi
- * /api/v1/train/all:
- *   post:
+ * /api/v1/train:
+ *   get:
  *     tags:
  *       - Train
  *     summary: Permite listar trenes
  *     description: Permite listar trenes
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *        application/json:    # Media type
+ *          schema:            # Request body contents
+ *            $ref: '#/components/schemas/Train'   # Reference to an object
+ *          example:           # Child of media type because we use $ref above
+ *            # Properties of a referenced object
+ *            {}
  *     responses:
  *       200:
  *         description: OK
@@ -160,9 +206,17 @@ trainRouter.get("/all", [
  *     tags:
  *       - Train
  *     summary: Permite borrar trenes
- *     description: Permite borrar trenes
+ *     description: Desactiva el tren indicado
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *        application/json:    # Media type
+ *          schema:            # Request body contents
+ *            $ref: '#/components/schemas/Train'   # Reference to an object
+ *          example:           # Child of media type because we use $ref above
+ *            # Properties of a referenced object
+ *            code: "4978165"
  *     responses:
  *       200:
  *         description: OK

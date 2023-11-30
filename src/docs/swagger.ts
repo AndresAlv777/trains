@@ -82,6 +82,8 @@ const swaggerOptions: OAS3Options = {
     swaggerDefinition,
     apis: [
         "src/modules/auth/routes/*.ts",
+        "src/modules/user/routes/*.ts",
+        "src/modules/train/routes/*.ts",
     ]
 }
 
