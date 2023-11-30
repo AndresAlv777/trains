@@ -37,6 +37,35 @@ const swaggerDefinition: OAS3Definition = {
                     }
                 }
             },
+            User: {
+                type: "object",
+                properties: {
+                    name: {
+                        type: "String",
+                        example: "Pedrito"
+                    },
+                    lastname: {
+                        type: "String",
+                        example: "Alcachofa"
+                    },
+                    email: {
+                        type: "String",
+                        example: "pedro@gmail.com"
+                    },
+                    password: {
+                        type: "String",
+                        example: "316458dpsdd"
+                    },
+                    cellphone: {
+                        type: "Number",
+                        example: 984612564
+                    },
+                    isActive: {
+                        type: "Boolean",
+                        example: true
+                    }
+                }
+            },
             Train: {
                 type: "object",
                 properties: {
