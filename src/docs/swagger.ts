@@ -12,10 +12,15 @@ const swaggerDefinition: OAS3Definition = {
     servers: [
         {
             url: `http://localhost:${(process.env.NODE_PORT ?? 3000)}`,
-            description: "Dev server"
+            description: "Development server"
         },
+        {
+            url: `https://technical-test-backend-wandering-field-2655-rough-glitter-1482.fly.dev`,
+            description: "Test Server"
+        }
     ],
     components: {
+        /*
         securitySchemes: {
             bearerAuth: {
                 type: "http",
@@ -23,49 +28,8 @@ const swaggerDefinition: OAS3Definition = {
                 bearerFormat: "JWT"
             }
         },
+        */
         schemas: {
-            Authentication: {
-                type: "object",
-                properties: {
-                    email: {
-                        type: "String",
-                        example: "prueba@gmail.com"
-                    },
-                    password: {
-                        type: "String",
-                        example: "12345678"
-                    }
-                }
-            },
-            User: {
-                type: "object",
-                properties: {
-                    name: {
-                        type: "String",
-                        example: "Pedrito"
-                    },
-                    lastname: {
-                        type: "String",
-                        example: "Alcachofa"
-                    },
-                    email: {
-                        type: "String",
-                        example: "pedro@gmail.com"
-                    },
-                    password: {
-                        type: "String",
-                        example: "316458dpsdd"
-                    },
-                    cellphone: {
-                        type: "Number",
-                        example: 984612564
-                    },
-                    isActive: {
-                        type: "Boolean",
-                        example: true
-                    }
-                }
-            },
             Train: {
                 type: "object",
                 properties: {
@@ -110,9 +74,7 @@ const swaggerDefinition: OAS3Definition = {
 const swaggerOptions: OAS3Options = {
     swaggerDefinition,
     apis: [
-        "src/modules/auth/routes/*.ts",
-        "src/modules/user/routes/*.ts",
-        "src/modules/train/routes/*.ts",
+        "./dist/modules/train/routes/*.js",
     ]
 }
 

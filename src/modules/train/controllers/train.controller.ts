@@ -14,8 +14,9 @@ export class TrainController extends BaseController implements ITrainController 
         super() 
     }
     async GetTrain(req: Request, res: Response): Promise<Response> {
+        
         try {
-            const code = req.body.code;
+            const code = req.query.code as string;
             const result = await this.trainService.GetTrain(code);
             
             return this.ok<object>(res, result);

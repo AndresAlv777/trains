@@ -107,7 +107,7 @@ trainRouter.post("/create", [
  *       401:
  *         description: Unauthorized
  */
-trainRouter.post("/update", [
+trainRouter.put("/update", [
     validate([
         body("color").bail().isString().notEmpty(),
         body("doorNumber").bail().isNumeric().notEmpty(),
@@ -129,15 +129,14 @@ trainRouter.post("/update", [
  *     summary: Permite obtener trenes
  *     description: Permite obtener trenes
  *     security:
- *       - bearerAuth: []
- *     requestBody:
- *       content:
- *        application/json:    # Media type
- *          schema:            # Request body contents
- *            $ref: '#/components/schemas/Train'   # Reference to an object
- *          example:           # Child of media type because we use $ref above
- *            # Properties of a referenced object
- *            code: "4978165"
+ *       basicAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: code
+ *         description: código
+ *         required: true
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: OK
@@ -155,15 +154,15 @@ trainRouter.post("/update", [
  *       401:
  *         description: Unauthorized
  */
-trainRouter.get("", [
+trainRouter.get("/get", [
     validate([
-        body("code").bail().isString().notEmpty(),
+        query("code").bail().isString().notEmpty(),
     ]),
     asyncHandler((req: Request, res: Response) => trainController.GetTrain(req, res))
 ]);
 /**
  * @openapi
- * /api/v1/train:
+ * /api/v1/train/all:
  *   get:
  *     tags:
  *       - Train
@@ -171,14 +170,6 @@ trainRouter.get("", [
  *     description: Permite listar trenes
  *     security:
  *       - bearerAuth: []
- *     requestBody:
- *       content:
- *        application/json:    # Media type
- *          schema:            # Request body contents
- *            $ref: '#/components/schemas/Train'   # Reference to an object
- *          example:           # Child of media type because we use $ref above
- *            # Properties of a referenced object
- *            {}
  *     responses:
  *       200:
  *         description: OK
@@ -198,7 +189,7 @@ trainRouter.get("", [
  */
 trainRouter.get("/all", [
     asyncHandler((req: Request, res: Response) => trainController.GetTrains(req, res))
-]);
+]); 
 /**
  * @openapi
  * /api/v1/train/delete:
