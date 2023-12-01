@@ -193,7 +193,7 @@ trainRouter.get("/all", [
 /**
  * @openapi
  * /api/v1/train/delete:
- *   post:
+ *   put:
  *     tags:
  *       - Train
  *     summary: Permite borrar trenes
@@ -225,7 +225,7 @@ trainRouter.get("/all", [
  *       401:
  *         description: Unauthorized
  */
-trainRouter.post("/delete", [
+trainRouter.put("/delete", [
     validate([
         body("code").bail().isString().notEmpty(),
     ]),
